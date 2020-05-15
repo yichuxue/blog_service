@@ -23,7 +23,8 @@ class UserController extends Controller {
     }
 
     // add user
-    await service.user.add({...req_data})
+    let result = await service.user.add({...req_data})
+    if (result == 0) return ctx.body = {msg: '注册失败', status: 'error'}
     ctx.body.msg = '注册成功'
     ctx.body.status = 'ok'
   }

@@ -13,7 +13,9 @@ class UserService extends Service {
   // 添加用户信息
   async add(user_data) {
     const { ctx } = this;
-    let user_group = await ctx.model.UserGroup.findOne({power_id: 2})
+    let user_group = await ctx.model.UserGroup.findOne({power_id: 0})
+    console.log("user_group: ", user_group)
+    if (user_group == null) return 0
     user_data.user_group = user_group
     // 加密
     user_data.password = ctx.app.cryptoHmac(user_data.password)
@@ -48,7 +50,7 @@ class UserService extends Service {
     // jwt加密
     token = await this.jwt_sign(user_data)
     if (user_data.username == data.username && user_data.password == password) {
-      return {status: 0, token: token, msg: '登陆成功'}
+      return {status: 0, authority: user_data.desc, token: token, msg: '登陆成功'}
     }
     return {status: 2, token: '', msg: '账号或密码错误'}
   }

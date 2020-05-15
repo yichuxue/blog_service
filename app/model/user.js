@@ -14,7 +14,7 @@ module.exports = app => {
     register_time: {type: String, default: String(Date())},
     last_login_time: {type: String, default: String(Date())},
     lock: {type: Number, default: 0},
-    user_group: {type: mongoose.Types.ObjectId, ref: 'user_group'},
+    user_group: {type: mongoose.SchemaTypes.ObjectId, ref: 'UserGroup'},
   });
   return mongoose.model('User', UserSchema, 'user');
 };
