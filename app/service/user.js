@@ -50,9 +50,9 @@ class UserService extends Service {
     // jwt加密
     token = await this.jwt_sign(user_data)
     if (user_data.username == data.username && user_data.password == password) {
-      return {status: 0, authority: user_data.desc, token: token, msg: '登陆成功'}
+      return {status: 0, authority: user_data.user_group.desc, token: token, msg: '登陆成功'}
     }
-    return {status: 2, token: '', msg: '账号或密码错误'}
+    return {status: 2, authority: '', token: '', msg: '账号或密码错误'}
   }
 
   // 加密

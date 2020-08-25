@@ -10,7 +10,7 @@ module.exports = app => {
     sex: {type: Number, default: 0},
     github: {type: String, default: ''},
     description: {type: String, default: ''},
-    image_url: {type: String, default: ''},
+    avatar: {type: String, default: '//gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'},
     register_time: {type: String, default: String(Date())},
     last_login_time: {type: String, default: String(Date())},
     lock: {type: Number, default: 0},

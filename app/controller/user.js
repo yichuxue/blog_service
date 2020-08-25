@@ -32,26 +32,30 @@ class UserController extends Controller {
   async login() {
     const { ctx, service } = this;
     const req_data = ctx.request.body
-    ctx.body = {msg: '', status: ''}
+    ctx.body = {msg: '', status: '', type: 'account', authority: ''}
 
-    let {status, token, msg} = await service.user.check_login(req_data)
+    let {status, authority, token, msg} = await service.user.check_login(req_data)
     console.log("login result: ", status)
+    console.log("authority: ", authority)
     if (!status) {
       ctx.body.status = 'ok'
       ctx.body.msg = msg
       ctx.body.token = token
+      ctx.body.currentAuthority = authority
       return
     }
+    
     ctx.body.status = 'error'
     ctx.body.msg = msg
   }
 
-  async getregister() {
+  async info() {
     const { ctx } = this;
-
+    console.log("user info")
     ctx.body = {
       msg: 'get',
-      status: 'ok'
+      status: 'ok',
+      name: 'lex'
     }
   }
 }
